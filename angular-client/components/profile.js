@@ -17,4 +17,22 @@ app.controller('profile' , function ($scope , $http) {
 			});
 	 }
 	 get()
+
+	  var post = function (data,url) {
+	var requestData = {
+		method :'POST',
+		url : url,
+		data : data
+	}
+	$http(requestData).then(function () {
+		console.log('success');
+	},function () {
+		console.log('error');
+	})
+ }
+ $scope.submit=function(){
+ 	console.log("hello")
+ }
 })
+
+
