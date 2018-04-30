@@ -170,7 +170,7 @@ var deleteProject = function(data,userId,callback){
 		if(err){
 			callback(err,null)
 		}
-		Task.delete
+		//Task.delete
 		callback(null,elem)
 	});
 }
