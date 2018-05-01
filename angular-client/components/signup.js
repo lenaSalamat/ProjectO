@@ -26,7 +26,7 @@ app.controller('signup' , function ($scope,$http ) {
 
 });
 // disable sign up button untill user fill all fields correctly 
-angular.module('meepo').directive('disableBtn',
+angular.module('mainApp').directive('disableBtn',
 	function() {
 		return {
 			restrict : 'A',
