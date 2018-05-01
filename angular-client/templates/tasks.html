@@ -2,17 +2,21 @@
 
 
 <style>
-* {
+
+/** {
     box-sizing: border-box;
-}
+}*/
 
 /* Create three equal columns that floats next to each other */
 .column {
+  box-sizing: content-box;    
+    width: 300px;
+    height: 500px;
     float: left;
-    width: 30%;
+    
     padding: 10px;
-    height:100%; /* Should be removed. Only for demonstration */
-}
+   /* Should be removed. Only for demonstration */
+
 
 /* Clear floats after the columns */
 .row:after {
@@ -20,10 +24,12 @@
     display: table;
     clear: both;
 }
+
 #div1 {
 height:60%;
 width:100%;
 }
+
 
 </style>
 <div  ng-controller="tasksCtrl">
@@ -125,10 +131,12 @@ width:100%;
       </div>
     </div> <!-- End Edit -->
 <div class="row" >
-  <div class="column col-md-4" style="background-color:#aaa;" ondragover='allowdrop(event)' ondrop='drop(event)' >
+
+  <div class="column" style="background-color:#aaa;" ondragover='allowdrop(event)' ondrop='drop(event)' >
     <h2>To Do</h2>
     <div class="row"  >
-        <div class="column col-md-4"  ng-repeat='task in tasksInfo'  >
+        <div   ng-repeat='task in tasksInfo'  >
+
           <div id=task._id  class="col-bg-4" draggable="true" ondragstart='drag(event)'>
             <ul class="w3-ul  w3-hoverable " >
               <li class="w3-bar" style="border: 2px solid black; padding: 10px; border-radius: 25px;" >
@@ -161,13 +169,20 @@ width:100%;
       
   
   </div>
-  <div class="column col-md-4" style="background-color:#bbb;" ondragover='allowdrop(event)' ondrop='drop(event)' >
+
+  <div class="column" style="background-color:#bbb;" ondragover='allowdrop(event)' ondrop='drop(event)' >
     <h2 >In Progress</h2>
+    <div></div>
+
     
   </div>
   <div class="column" style="background-color:#ccc;" ondragover='allowdrop(event)' ondrop='drop(event)'>
     <h2>Done</h2>
+
+    <div></div>
+
     
+
   </div>
 </div>
     <!-- Modal Add -->
