@@ -1,0 +1,143 @@
+<!-- <!DOCTYPE HTML>
+<html>
+<head>
+<style>
+#div1, #div2 {
+    float: left;
+    width: 100px;
+    height: 35px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+}
+</style>
+<script>
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+}
+</script>
+</head>
+<body>
+
+<h2>Drag and Drop</h2>
+<p>Drag the image back and forth between the two div elements.</p>
+
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+  <img src="img_w3slogo.gif" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31">
+</div>
+
+<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+</body>
+</html>
+ -->
+  <!DOCTYPE HTML>
+  <html>
+     <head>
+        <meta charset="utf-8">
+        <title>Creativity Dashboard</title>
+
+        <!-- Required CSS -->
+        <link href="css/movingboxes.css" rel="stylesheet">
+        <link href="css/compare.css" rel="stylesheet">
+
+        <!--[if lt IE 9]>
+           <link href="css/movingboxes-ie.css" rel="stylesheet" media="screen">
+        <![endif]-->
+
+        <!-- Required script -->
+        <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+        <script src="js/jquery.movingboxes.js"></script>
+
+        <!-- Demo only -->
+        <link href="demo/demo.css" rel="stylesheet">
+        <script src="demo/demo.js"></script>
+
+        <script>
+           function allowDrop(ev) {
+              ev.preventDefault();
+           }
+
+           function drag(ev) {
+              ev.dataTransfer.setData("text", ev.target.id);
+           }
+
+           function drop(ev) {
+              ev.preventDefault();
+              var data = ev.dataTransfer.getData("text");
+              ev.target.appendChild(document.getElementById(data));
+           }
+        </script>
+        <style>
+           /* Overall & panel width defined using css in MovingBoxes version 2.2.2+ */
+           #slider-one {
+              width: 1003px;
+           }
+
+           #slider-one>li {
+              width: 150px;
+           }
+        </style>
+     </head>
+
+     <body>
+        <div class="wrapper">
+           <!-- Slider #1 -->
+           <ul id="slider-one">
+
+              <li><img id="drag1" src="demo/1.jpg" draggable="true"
+                 ondragstart="drag(event)" alt="picture"></li>
+
+              <li><img id="drag2" src="demo/2.jpg" draggable="true"
+                 ondragstart="drag(event)" alt="picture"></li>
+
+              <li><img id="drag3" src="demo/3.jpg" draggable="true"
+                 ondragstart="drag(event)" alt="picture"></li>
+
+              <li><img id="drag5" src="demo/4.jpg" draggable="true"
+                 ondragstart="drag(event)" alt="picture"></li>
+
+              <li><img id="drag6" src="demo/5.jpg" draggable="true"
+                 ondragstart="drag(event)" alt="picture"></li>
+
+              <li><img id="drag7" src="demo/6.jpg" draggable="true"
+                 ondragstart="drag(event)" alt="picture" id="astronaut"></li>
+
+              <li><img id="drag8" src="demo/7.jpg" draggable="true"
+                 ondragstart="drag(event)" alt="picture"></li>
+
+           </ul>
+           <!-- end Slider #1 -->
+           <div id="dragAnddrop" ondrop="drop(event)"
+              ondragover="allowDrop(event)" style="width: 12em; height: 12em">
+           </div>
+        </div>
+
+        <div>
+           <div class="left">
+              <img id="drag" draggable="true" ondragstart="drag(event)"
+                 src="images/startingImage.jpg" style="width: 12em;" alt="picture">
+
+           </div>
+           <div class="middle ">
+              <img id="image3" src="images/startingImage.jpg" class="image-size"
+                 alt="picture" draggable="true" ondragstart="drag(event)"> <img
+                 src="images/harvest.jpg" class="image-size" alt="picture">
+           </div>
+           <div class="right">
+              <img src="images/startingImage.jpg" style="width: 12em;"
+                 alt="picture">
+           </div>
+        </div>
+     </body>
+  </html>
