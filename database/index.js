@@ -1,8 +1,8 @@
 let mongoose = require('mongoose');
 let bcrypt = require('bcrypt');
 let Schema =mongoose.Schema;
-//mongoose.connect('mongodb://localhost:/PM-db' );
-mongoose.connect('mongodb://admin:admin@ds249269.mlab.com:49269/pm-db');
+mongoose.connect('mongodb://localhost:/PM-db' );
+//mongoose.connect('mongodb://admin:admin@ds249269.mlab.com:49269/pm-db');
 var db = mongoose.connection;
 db.on('error' , function(){
 	console.log('mongoose not Connected !')
@@ -25,6 +25,8 @@ var userSchema = mongoose.Schema({
 	username :{type : String ,required :true, index :{unique:true} },
 	password :{type : String ,required :true}, 
 	email :{type : String ,required :true}, 
+	Address : {type : String , required :true},
+	Age : {type : Number , required:true},
 	projects:[projectSchama]//each user has many projects
 	
 });
