@@ -1,4 +1,4 @@
-var app = angular.module('mainTask' );// task module
+var app = angular.module('mainTask' ,[]);// task module
 
 app.component('tasks', {
 	templateUrl: '/templates/tasks.html'
@@ -7,6 +7,17 @@ app.component('tasks', {
 
 app.controller('tasksCtrl', function ($scope, $http,$window){
 	// get all existing tasks in db 
+
+	 $scope.CustomStyle = {};
+        $scope.BColor = "Yellow";
+        $scope.Color = "Blue";
+
+        $scope.SetStyle = function () {
+            $scope.CustomStyle = {
+                'background-color': $scope.BColor,
+                'color' : $scope.Color
+            };
+        }
 	var get = function () {
 		var response = {
 			method: "GET",
@@ -83,5 +94,6 @@ app.controller('tasksCtrl', function ($scope, $http,$window){
 	$window.location.href = 'app2.html'
  		
  	}
+  
  	
 });

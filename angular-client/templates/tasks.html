@@ -137,12 +137,25 @@ width:100%;
     <div class="row"  >
         <div   ng-repeat='task in tasksInfo'  >
 
-          <div id=task._id  class="col-bg-4" draggable="true" ondragstart='drag(event)'>
+          <div  id=task._id  class="col-bg-4" draggable="true" ondragstart='drag(event)'>
             <ul class="w3-ul  w3-hoverable " >
               <li class="w3-bar" style="border: 2px solid black; padding: 10px; border-radius: 25px;" >
 
-                <div class="w3-card w3-animate-right " style="right:0; align-items: center;" id="rightMenu" ng-show="bar">
+                <div  class="w3-card w3-animate-right " style="right:0; align-items: center;" id="rightMenu" ng-show="bar">
                   <!-- we used data-target to connect this button on Modal fadeout-->
+               <div ng-app="mainTask" ng-controller="tasksCtrl">
+               
+               what is the priority of your task :
+                <select ng-model="BColor" ng-change="SetStyle()">
+                    <option>Red</option>
+                    <option>Green</option>
+                    <option>Blue</option>
+                    <option>Yellow</option>
+                </select>
+               <span ng-style="CustomStyle">priority</span>
+               </div>
+              
+              
                   <a href="#" class="w3-bar-item w3-button" ng-click="deleteTask(task.description)" style="color: white;">Delete</a>
                   <a href="#" class="w3-bar-item w3-button" ng-click="getOldTaskData(task)" data-target="#myModalEdit" data-toggle="modal" style="color: white;">Update</a>
                 </div>
