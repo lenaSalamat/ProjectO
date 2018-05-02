@@ -170,6 +170,8 @@ app.post('/tasks', function(req, res) {
 							task['assignedTo']=req.body.assignedTo;
 							task['complexity']=req.body.complexity;
 							task['status']=req.body.status;
+							task['priority']=req.body.priority;
+
 
 
 							task['project_id']=projectId;
