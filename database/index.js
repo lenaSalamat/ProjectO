@@ -1,8 +1,8 @@
 let mongoose = require('mongoose');
 let bcrypt = require('bcrypt');
 let Schema =mongoose.Schema;
-//mongoose.connect('mongodb://localhost:/PM-db' );
-mongoose.connect('mongodb://admin:admin@ds249269.mlab.com:49269/pm-db');
+mongoose.connect('mongodb://localhost:/PM-dbCD' );
+// mongoose.connect('mongodb://admin:admin@ds249269.mlab.com:49269/pm-db');
 var db = mongoose.connection;
 db.on('error' , function(){
 	console.log('mongoose not Connected !')
@@ -25,13 +25,21 @@ var userSchema = mongoose.Schema({
 	username :{type : String ,required :true, index :{unique:true} },
 	password :{type : String ,required :true}, 
 	email :{type : String ,required :true}, 
+	address :{type : String ,required :true}, 
+	age :{type : Number ,required :true}, 
 	projects:[projectSchama]//each user has many projects
 	
+});
+var chatSchema = mongoose.Schema({
+	sendFrom:{type:String,required:true},
+	sendTo:{type:String,required:true},
+	content:{type:String,required:true}
 });
 // define models for the schema
 var User = mongoose.model("User" , userSchema);
 var Project = mongoose.model("Project" , projectSchama);
 var Task = mongoose.model('Task', taskSchema);
+var Chat = mongoose.model('Chat',chatSchema)
 // encrypt the password and save username and encrypted password
 var save = function (newUser , callback) {
 	bcrypt.genSalt(10,function(err,salt){
@@ -46,6 +54,25 @@ var save = function (newUser , callback) {
 	});
 
 }
+
+var addChat=function(data,callback){
+	console.log('data')
+var msg=new Chat({sendFrom:data.sendFrom,sendTo:data.sendTo,content:data.content});
+msg.save(function(err){
+	if(err){
+		return handleError(err)
+	}else{
+		console.log("data saved")
+	}
+})
+
+}
+
+
+
+// }
+
+
 // add the task to the task table, project table and to user table
 var addTask = function(data, callback) {
 	var task = new Task({description:data.description,assignedTo:data.assignedTo,complexity:data.complexity,status:data.status});
@@ -170,7 +197,7 @@ var deleteProject = function(data,userId,callback){
 		if(err){
 			callback(err,null)
 		}
-		Task.delete
+		//Task.delete
 		callback(null,elem)
 	});
 }
@@ -199,7 +226,8 @@ var changeProject = function(query,condition,userId,callback){
 		callback(null,elem)
 	});
 }
-
+module.exports.addChat=addChat;
+module.exports.Chat=Chat;
 module.exports.save = save;
 module.exports.User = User;
 module.exports.Project = Project;

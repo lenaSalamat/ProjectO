@@ -83,4 +83,5 @@ app.controller('tasksCtrl', function ($scope, $http,$window){
 	$window.location.href = 'app2.html'
  		
  	}
+ 	
 });

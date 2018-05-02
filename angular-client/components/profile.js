@@ -18,3 +18,5 @@ app.controller('profile' , function ($scope , $http) {
 	 }
 	 get()
 })
+
+
