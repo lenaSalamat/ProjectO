@@ -1,4 +1,5 @@
 
+
 var app = angular.module('mainTask');// task module
 
 //var app = angular.module('mainTask' ,[]);// task module
@@ -28,6 +29,7 @@ app.controller('tasksCtrl', function ($scope, $http,$window){
 			url: '/tasks'
 		};
 		$http(response).then(function (data){
+			console.log(data)
 			$scope.tasksInfo = data.data
 		},function(){
 			console.log('error')
@@ -98,6 +100,26 @@ app.controller('tasksCtrl', function ($scope, $http,$window){
 	$window.location.href = 'app2.html'
  		
  	}
-  
- 	
+
+
+ 	var getAssignedto = function () {
+		var response = {
+			method: "GET",
+			url: '/Assignedto'
+		};
+		$http(response).then(function (data){
+			console.log("paaaaaaaaaairsssss",data)
+			$scope.team =data.data 
+		},function(){
+			console.log('error')
+		});
+    };
+
+    $scope.Showassignedto = function () {
+	getAssignedto();
+ 		
+ 	}
+
+
+
 });

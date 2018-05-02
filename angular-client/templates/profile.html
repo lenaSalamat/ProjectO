@@ -3,9 +3,17 @@
 				<div class="profile">    	
 					<img align="left" class="image-lg "  src="images/blank-business-composition-373076.jpg" alt="Profile" style="" />
 					<!-- <img align="left" class="image-profile img-circle" src="images/Portrait_Placeholder.jpg" alt="Profile image example" /> -->
+
+					<form><label class = "btn btn-primary">
+					<input type="file" name="file" style="display:none" onchange="angular.element(this).scope().selectFile(this.files)" id="file"/>
+					Change
+					</label> 
+				</form>
+
+					<img ng-src={{hanan}} height="200" alt="Image preview..." align="left" class="image-profile img-circle">
+
 					
-					<input type="file" name="file" style="display:none" onchange="angular.element(this).scope().selectFile(this.files)" id="file"/> 
-					<img ng-src="{{image || images/Portrait_Placeholder.jpg}}" height="200" alt="Image preview..." align="left" class="image-profile img-circle">
+
 					<div class="profile-text">
 						<h1>{{user.username}}</h1>
 						<p>Discription</p>
