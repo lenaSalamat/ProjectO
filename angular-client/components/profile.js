@@ -17,4 +17,20 @@ app.controller('profile' , function ($scope , $http) {
 			});
 	 }
 	 get()
+	 $scope.selectFile= function(files){
+	 	console.log("hi")
+
+  var file    = files[0];
+  console.log(file,"fileeeee")
+  var reader  = new FileReader();
+
+  reader.addEventListener("load", function () {
+    $scope.image = reader.result;
+    console.log($scope.image,"reader.resuuuuuuuult")
+  }, false);
+
+  if (file) {
+    reader.readAsDataURL(file);
+  }
+ }
 })
