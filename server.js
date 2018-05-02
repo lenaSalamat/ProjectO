@@ -6,11 +6,26 @@ const session = require('express-session');
 const app = express();
 const expressValidator = require('express-validator');
 const bcrypt =require('bcrypt');
+var multer  = require('multer');
 
 app.use(expressValidator())
 app.use(express.static(path.join(__dirname, '/angular-client/') ));
 app.use(bodyParser.json());
 app.use(session({secret:'this is secret'}));
+
+var storage = multer.diskStorage({
+  destination: './uploads/',
+  filename: function (req, file, cb) {
+    cb(null, file.originalname.replace(path.extname(file.originalname), "") + '-' + Date.now() + path.extname(file.originalname))
+  }
+})
+
+var upload = multer({ storage: storage });
+
+app.post('/savedata', upload.single('file'), function(req,res,next){
+    console.log('Uploade Successful ', req.file, req.body);
+});
+
 
 app.post('/user',function(req , res){
 	db.save(req.body , function (err , data) {
