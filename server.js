@@ -13,6 +13,26 @@ app.use(express.static(path.join(__dirname, '/angular-client/') ));
 app.use(bodyParser.json());
 app.use(session({secret:'this is secret'}));
 
+app.post('/chat',function(req , res){
+	db.addChat(req.body , function (err , data) {
+		if(err) {
+			res.send(err)
+		}
+		res.send(data)
+		console.log('data',data)
+	})
+	
+});
+app.get('/chat',function(req,res){
+	db.Chat.findAll({},function(err,data){
+		if(err) {
+			res.send(err)
+		}
+		res.send(data)
+
+	})
+})
+
 var storage = multer.diskStorage({
   destination: './uploads/',
   filename: function (req, file, cb) {
@@ -27,8 +47,9 @@ app.post('/savedata', upload.single('file'), function(req,res,next){
 });
 
 
+
 app.post('/user',function(req , res){
-	db.save(req.body , function (err , data) {
+	db.save(req.body, function (err , data) {
 		if(err) {
 			res.send(err)
 		}

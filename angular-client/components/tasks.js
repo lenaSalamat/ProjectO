@@ -102,6 +102,7 @@ app.controller('tasksCtrl', function ($scope, $http,$window){
 	$window.location.href = 'app2.html'
  		
  	}
+
  	var getAssignedto = function () {
 		var response = {
 			method: "GET",
@@ -119,8 +120,5 @@ app.controller('tasksCtrl', function ($scope, $http,$window){
 	getAssignedto();
  		
  	}
-
-
-
 
 });
