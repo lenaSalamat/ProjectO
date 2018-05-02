@@ -1,8 +1,13 @@
 let mongoose = require('mongoose');
 let bcrypt = require('bcrypt');
 let Schema =mongoose.Schema;
-mongoose.connect('mongodb://localhost:/PM-db' );
+
+//mongoose.connect('mongodb://localhost:/PM-db' );
+mongoose.connect('mongodb://localhost/pm-db');
+
+//mongoose.connect('mongodb://localhost:/PM-db' );
 //mongoose.connect('mongodb://admin:admin@ds249269.mlab.com:49269/pm-db');
+
 var db = mongoose.connection;
 db.on('error' , function(){
 	console.log('mongoose not Connected !')
@@ -19,6 +24,7 @@ var taskSchema = mongoose.Schema({
 var projectSchama = mongoose.Schema({
 	projectName : String , 
 	projectDisc : String,
+	projectPair: String,
 	tasks:[taskSchema]//each project has many tasks
 })
 var userSchema = mongoose.Schema({
@@ -50,7 +56,23 @@ var save = function (newUser , callback) {
 }
 // add the task to the task table, project table and to user table
 var addTask = function(data, callback) {
+
 	var task = new Task({description:data.description,assignedTo:data.assignedTo,complexity:data.complexity,status:data.status});
+	User.findOne({username:data.assignedTo}, function (err, user) {
+		if (err) return handleError(err);
+		for(var i=0; i<user.projects.length ;i++){
+			if(user.projects[i].projectName.toString() === data.projectName){
+				Project.findOne({projectName:data.projectName},function(err,project){
+					project.tasks.push(task);
+					project.save();
+				})
+				user.projects[i].tasks.push(task);
+
+				user.save();
+				task.save();
+			}
+		}
+	});
 	User.findById(data.user_id, function (err, user) {
 		if (err) return handleError(err);
 		for(var i=0; i<user.projects.length ;i++){
@@ -148,7 +170,13 @@ var updateTask = function(query, newData,userId,projectId , callback) {
 
 // this function to add project to the user schema and project schema
 var addProject = function(data, callback) {
-	var project=new Project({projectName:data.projectName,projectDisc:data.projectDisc});
+	var project=new Project({projectName:data.projectName,projectDisc:data.projectDisc,projectPair:data.projectPair});
+	User.findOne({username:data.projectPair},function (err, user) {
+		if (err) return handleError(err);
+		user.projects.push(project);
+		user.save();
+		project.save();
+	})
 	User.findById(data.project_id, function (err, user) {
 		if (err) return handleError(err);
 		user.projects.push(project);
