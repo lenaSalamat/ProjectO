@@ -6,7 +6,9 @@ let Schema =mongoose.Schema;
 mongoose.connect('mongodb://localhost/pm-db');
 
 //mongoose.connect('mongodb://localhost:/PM-db' );
+
 //mongoose.connect('mongodb://admin:admin@ds249269.mlab.com:49269/pm-db');
+
 
 var db = mongoose.connection;
 db.on('error' , function(){
@@ -25,7 +27,11 @@ var taskSchema = mongoose.Schema({
 var projectSchama = mongoose.Schema({
 	projectName : String , 
 	projectDisc : String,
-	projectPair: String,
+
+	projectPair: [String],//pair is team 
+
+
+
 	tasks:[taskSchema]//each project has many tasks
 })
 var userSchema = mongoose.Schema({
@@ -177,12 +183,18 @@ var updateTask = function(query, newData,userId,projectId , callback) {
 // this function to add project to the user schema and project schema
 var addProject = function(data, callback) {
 	var project=new Project({projectName:data.projectName,projectDisc:data.projectDisc,projectPair:data.projectPair});
-	User.findOne({username:data.projectPair},function (err, user) {
+
+	for (var i=0;i<data.projectPair.length;i++){
+		User.findOne({username:data.projectPair[i]},function (err, user) {
+
 		if (err) return handleError(err);
 		user.projects.push(project);
 		user.save();
 		project.save();
 	})
+
+	}
+
 	User.findById(data.project_id, function (err, user) {
 		if (err) return handleError(err);
 		user.projects.push(project);
