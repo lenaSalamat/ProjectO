@@ -79,12 +79,14 @@ app.get('/logout',function(req,res){
 
 // route to add new project for the user in this session 
 app.post('/project',function(req , res) {
+	console.log(req.body)
 	db.User.findOne({'_id':req.session._id},function (err, data) {
 		if(err){res.sendStatus(404)}
 			if(data !== null){
 				var project={};
 				project['projectName']=req.body.projectName;
 				project['projectDisc']=req.body.projectDisc;
+				project['projectPair']=req.body.projectPair;
 				project['project_id']=req.session._id;
 				db.addProject(project , function (err , data) {
 					if(err) {
@@ -101,12 +103,15 @@ app.post('/project',function(req , res) {
 app.get('/project', function(req,res) {
 	db.User.findOne({'_id':req.session._id},function (err, user) {
 		if(err){res.send(err)}
+			console.log(user.projects)
 			res.status(200).send(user.projects);
 	});
 });
 let projectId;
+let projectname;
 app.post('/projectId',function(req,res){
 	projectId=req.body.projectId;
+	projectname=req.body.name;
 })
 
 // route to delete a specific project 
@@ -159,6 +164,7 @@ app.get('/tasks/:description', function(req, res) {
 
 
 app.post('/tasks', function(req, res) {
+	console.log(projectId)
 	db.User.findOne({'_id':req.session._id},function (err, data) {
 		if(err){res.sendStatus(404)}
 			if(data !== null){
@@ -173,7 +179,7 @@ app.post('/tasks', function(req, res) {
 							task['priority']=req.body.priority;
 
 
-
+                            task['projectName']=projectname;
 							task['project_id']=projectId;
 							task['user_id']=req.session._id;
 							db.addTask(task , function (err , data) {
