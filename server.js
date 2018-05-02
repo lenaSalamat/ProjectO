@@ -6,11 +6,26 @@ const session = require('express-session');
 const app = express();
 const expressValidator = require('express-validator');
 const bcrypt =require('bcrypt');
+var multer  = require('multer');
 
 app.use(expressValidator())
 app.use(express.static(path.join(__dirname, '/angular-client/') ));
 app.use(bodyParser.json());
 app.use(session({secret:'this is secret'}));
+
+var storage = multer.diskStorage({
+  destination: './uploads/',
+  filename: function (req, file, cb) {
+    cb(null, file.originalname.replace(path.extname(file.originalname), "") + '-' + Date.now() + path.extname(file.originalname))
+  }
+})
+
+var upload = multer({ storage: storage });
+
+app.post('/savedata', upload.single('file'), function(req,res,next){
+    console.log('Uploade Successful ', req.file, req.body);
+});
+
 
 app.post('/user',function(req , res){
 	db.save(req.body , function (err , data) {
@@ -64,7 +79,11 @@ app.get('/logout',function(req,res){
 
 // route to add new project for the user in this session 
 app.post('/project',function(req , res) {
+
 	//console.log(req.body)
+
+	console.log(req.body)
+
 	db.User.findOne({'_id':req.session._id},function (err, data) {
 		if(err){res.sendStatus(404)}
 			if(data !== null){
@@ -73,7 +92,10 @@ app.post('/project',function(req , res) {
                 //console.log(typeof(req.body.projectPair),"paaaaaaairsss")
 				project['projectName']=req.body.projectName;
 				project['projectDisc']=req.body.projectDisc;
+
 				project['projectPair']=team;
+
+				
 				project['project_id']=req.session._id;
 				db.addProject(project , function (err , data) {
 					if(err) {
@@ -90,7 +112,9 @@ app.post('/project',function(req , res) {
 app.get('/project', function(req,res) {
 	db.User.findOne({'_id':req.session._id},function (err, user) {
 		if(err){res.send(err)}
+
 			console.log(user.projects,"prooooojectssssssssssss0")
+
 			res.status(200).send(user.projects);
 	});
 });

@@ -1,8 +1,15 @@
 let mongoose = require('mongoose');
 let bcrypt = require('bcrypt');
 let Schema =mongoose.Schema;
+
 //mongoose.connect('mongodb://localhost:/PM-db' );
 mongoose.connect('mongodb://localhost/pm-db');
+
+//mongoose.connect('mongodb://localhost:/PM-db' );
+
+//mongoose.connect('mongodb://admin:admin@ds249269.mlab.com:49269/pm-db');
+
+
 var db = mongoose.connection;
 db.on('error' , function(){
 	console.log('mongoose not Connected !')
@@ -19,13 +26,19 @@ var taskSchema = mongoose.Schema({
 var projectSchama = mongoose.Schema({
 	projectName : String , 
 	projectDisc : String,
+
 	projectPair: [String],//pair is team 
+
+
+
 	tasks:[taskSchema]//each project has many tasks
 })
 var userSchema = mongoose.Schema({
 	username :{type : String ,required :true, index :{unique:true} },
 	password :{type : String ,required :true}, 
 	email :{type : String ,required :true}, 
+	Address : {type : String , required :true},
+	Age : {type : Number , required:true},
 	projects:[projectSchama]//each user has many projects
 	
 });
@@ -164,14 +177,18 @@ var updateTask = function(query, newData,userId,projectId , callback) {
 // this function to add project to the user schema and project schema
 var addProject = function(data, callback) {
 	var project=new Project({projectName:data.projectName,projectDisc:data.projectDisc,projectPair:data.projectPair});
+
 	for (var i=0;i<data.projectPair.length;i++){
 		User.findOne({username:data.projectPair[i]},function (err, user) {
+
 		if (err) return handleError(err);
 		user.projects.push(project);
 		user.save();
 		project.save();
 	})
+
 	}
+
 	User.findById(data.project_id, function (err, user) {
 		if (err) return handleError(err);
 		user.projects.push(project);
@@ -195,7 +212,7 @@ var deleteProject = function(data,userId,callback){
 		if(err){
 			callback(err,null)
 		}
-		Task.delete
+		//Task.delete
 		callback(null,elem)
 	});
 }
@@ -224,6 +241,9 @@ var changeProject = function(query,condition,userId,callback){
 		callback(null,elem)
 	});
 }
+
+
+
 
 module.exports.save = save;
 module.exports.User = User;
