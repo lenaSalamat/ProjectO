@@ -118,7 +118,6 @@ width:100%;
                   </select>
                 </div>
               </div>
-              
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                   <button type="submit" class="btn btn-success" data-dismiss="modal" ng-click="saveChanges()">Save</button>
@@ -143,19 +142,6 @@ width:100%;
 
                 <div  class="w3-card w3-animate-right " style="right:0; align-items: center;" id="rightMenu" ng-show="bar">
                   <!-- we used data-target to connect this button on Modal fadeout-->
-               <div ng-app="mainTask" ng-controller="tasksCtrl">
-               
-               what is the priority of your task :
-                <select ng-model="BColor" ng-change="SetStyle()">
-                    <option>Red</option>
-                    <option>Green</option>
-                    <option>Blue</option>
-                    <option>Yellow</option>
-                </select>
-               <span ng-style="CustomStyle">priority</span>
-               </div>
-              
-              
                   <a href="#" class="w3-bar-item w3-button" ng-click="deleteTask(task.description)" style="color: white;">Delete</a>
                   <a href="#" class="w3-bar-item w3-button" ng-click="getOldTaskData(task)" data-target="#myModalEdit" data-toggle="modal" style="color: white;">Update</a>
                 </div>
@@ -170,7 +156,11 @@ width:100%;
                 <h3 class="w3-bar-item  w3-hide-small" style="width:85px">{{$index+1}} 📃</h3>
                 <div class="w3-bar-item">
                   <span class="w3-large" >{{task.complexity}}</span><br>
+               <div class="w3-bar-item" >
+                  <span class="w3-large" style="background-color: #ffffff ;border: 2px solid black" >{{task.priority}}</span><br>
 
+                  
+                </div>
                   
                 </div>
               </li>
@@ -178,6 +168,7 @@ width:100%;
             </ul>
           </div>
         </div>
+
       </div>
       
   
@@ -262,12 +253,35 @@ width:100%;
 
               </div>
             </div>
-
+            <!-- <label class="control-label col-sm-2" ></label>
+            <div ng-app="mainTask" ng-controller="tasksCtrl">
+                <select  ng-model="BColor" ng-change="SetStyle()">
+                    <option>#ff0000</option>
+                    <option>Green</option>
+                    <option>Blue</option>
+                    <option>Yellow</option>
+                </select>
+               <span ng-style="CustomStyle">Task priority</span>
+               </div> -->
+               
+            <div class="form-group">
+             <label class="control-label col-sm-2" >Task priority</label>
+             <div class="col-sm-10">
+                <select class="form-control" ng-model="mypriority">
+                  <option>🗣bug</option>
+                    <option>🤝help wanted</option>
+                    <option>🤙🏻first issue</option>
+                    <option>🤖 invalid</option>
+                </select>
+               
+               </div>
+              </div>
             <div class="form-group">
               <div class="col-sm-offset-2 col-sm-10">
                 <button type="submit" class="btn btn-success" data-dismiss="modal" ng-click="addNewTask()">Add</button>
               </div>
             </div>
+
           </form> 
         </div>
       </div>

@@ -21,7 +21,8 @@ var taskSchema = mongoose.Schema({
 	description: String,
 	assignedTo: String,
 	complexity: Number,
-	status: String
+	status: String,
+	priority: String
 });
 var projectSchama = mongoose.Schema({
 	projectName : String , 
@@ -63,7 +64,11 @@ var save = function (newUser , callback) {
 // add the task to the task table, project table and to user table
 var addTask = function(data, callback) {
 
-	var task = new Task({description:data.description,assignedTo:data.assignedTo,complexity:data.complexity,status:data.status});
+	var task = new Task({description:data.description,assignedTo:data.assignedTo,complexity:data.complexity,status:data.status,priority:data.priority});
+	task.save();
+
+
+
 	User.findOne({username:data.assignedTo}, function (err, user) {
 		if (err) return handleError(err);
 		for(var i=0; i<user.projects.length ;i++){
@@ -79,6 +84,7 @@ var addTask = function(data, callback) {
 			}
 		}
 	});
+
 	User.findById(data.user_id, function (err, user) {
 		if (err) return handleError(err);
 		for(var i=0; i<user.projects.length ;i++){

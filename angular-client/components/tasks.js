@@ -13,16 +13,15 @@ app.component('tasks', {
 app.controller('tasksCtrl', function ($scope, $http,$window){
 	// get all existing tasks in db 
 
-	 $scope.CustomStyle = {};
-        $scope.BColor = "Yellow";
-        $scope.Color = "Blue";
+	 // $scope.CustomStyle = {};
+  //    $scope.BColor = "Yellow";
+       
+  //       $scope.SetStyle = function () {
+  //           $scope.CustomStyle = {
+  //               'background-color': $scope.BColor,
+  //           };
+  //       }
 
-        $scope.SetStyle = function () {
-            $scope.CustomStyle = {
-                'background-color': $scope.BColor,
-                'color' : $scope.Color
-            };
-        }
 	var get = function () {
 		var response = {
 			method: "GET",
@@ -58,7 +57,9 @@ app.controller('tasksCtrl', function ($scope, $http,$window){
  			description: $scope.description,
  			assignedTo: $scope.assignedTo,
  			complexity: $scope.complexity,
- 			status: $scope.status
+ 			status: $scope.status,
+ 			priority:$scope.mypriority
+
  		};
 
  		post(newTask,'/tasks');
@@ -88,7 +89,8 @@ app.controller('tasksCtrl', function ($scope, $http,$window){
  				description: $scope.oldTask.description,
 	 			assignedTo: $scope.oldTask.assignedTo,
 	 			complexity: $scope.oldTask.complexity,
-	 			status: $scope.oldTask.status
+	 			status: $scope.oldTask.status,
+	 			priority:$scope.oldTask.priority
  			},
  			oldData: $scope.oldData
  		};
@@ -100,8 +102,6 @@ app.controller('tasksCtrl', function ($scope, $http,$window){
 	$window.location.href = 'app2.html'
  		
  	}
-
-
  	var getAssignedto = function () {
 		var response = {
 			method: "GET",
@@ -119,6 +119,7 @@ app.controller('tasksCtrl', function ($scope, $http,$window){
 	getAssignedto();
  		
  	}
+
 
 
 
