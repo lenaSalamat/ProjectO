@@ -58,7 +58,7 @@ app.controller('tasksCtrl', function ($scope, $http,$window){
  			assignedTo: $scope.assignedTo,
  			complexity: $scope.complexity,
  			status: $scope.status,
- 			priority:$scope.mypriority
+ 			priority:$scope.priority
 
  		};
 
@@ -120,5 +120,4 @@ app.controller('tasksCtrl', function ($scope, $http,$window){
 	getAssignedto();
  		
  	}
-
 });

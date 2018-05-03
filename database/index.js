@@ -182,7 +182,7 @@ var updateTask = function(query, newData,userId,projectId , callback) {
 							user.projects[i].tasks[j].assignedTo=newData.assignedTo;
 							user.projects[i].tasks[j].complexity=newData.complexity;
 							user.projects[i].tasks[j].status=newData.status;
-
+                            user.projects[i].tasks[j].priority=newData.priority;
 							user.save();
 						}
 					}
@@ -197,7 +197,7 @@ var updateTask = function(query, newData,userId,projectId , callback) {
 					proj.tasks[i].assignedTo=newData.assignedTo;
 					proj.tasks[i].complexity=newData.complexity;
 					proj.tasks[i].status=newData.status;
-
+                    proj.tasks[i].priority=newData.priority;
 					proj.save();
 				}
 			}
