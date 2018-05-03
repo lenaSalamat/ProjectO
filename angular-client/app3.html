@@ -64,6 +64,24 @@ function drop(e) {
 e.target.appendChild(document.getElementById(data))
 }
 
+// Set the date we're counting down to
+var countDownDate = new Date("June 4, 2018 15:20:10").getTime();
+var x = setInterval(function() {
+    var now = new Date().getTime();
+    // Find the distance between now an the count down date
+    var distance = countDownDate - now;
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    // Output the result in an element with id="time"
+    document.getElementById("time").innerHTML = hours + "hrs " + minutes + "mins " + seconds + "secs ";
+// If the count down is over, write some text 
+    if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("time").innerHTML = "EXPIRED";
+    }
+}, 1000);
+
 </script>
 	
 </head>	
