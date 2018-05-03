@@ -21,9 +21,10 @@ app.controller('signup' , function ($scope,$http ) {
 		username : $scope.username ,
 		email : $scope.email,
 		password : $scope.password,
+
 		Address:$scope.Address,
 		Age:$scope.Age
-      });
+
   }
 
 });
