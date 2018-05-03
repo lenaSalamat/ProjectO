@@ -1,9 +1,4 @@
-
-
-var app = angular.module('mainTask');// task module
-
-//var app = angular.module('mainTask' ,[]);// task module
-
+var app = angular.module('mainTask' );// task module
 
 app.component('tasks', {
 	templateUrl: '/templates/tasks.html'
@@ -12,23 +7,12 @@ app.component('tasks', {
 
 app.controller('tasksCtrl', function ($scope, $http,$window){
 	// get all existing tasks in db 
-
-	 // $scope.CustomStyle = {};
-  //    $scope.BColor = "Yellow";
-       
-  //       $scope.SetStyle = function () {
-  //           $scope.CustomStyle = {
-  //               'background-color': $scope.BColor,
-  //           };
-  //       }
-
 	var get = function () {
 		var response = {
 			method: "GET",
 			url: '/tasks'
 		};
 		$http(response).then(function (data){
-			console.log(data)
 			$scope.tasksInfo = data.data
 		},function(){
 			console.log('error')
@@ -57,9 +41,7 @@ app.controller('tasksCtrl', function ($scope, $http,$window){
  			description: $scope.description,
  			assignedTo: $scope.assignedTo,
  			complexity: $scope.complexity,
- 			status: $scope.status,
- 			priority:$scope.priority
-
+ 			status: $scope.status
  		};
 
  		post(newTask,'/tasks');
@@ -89,8 +71,7 @@ app.controller('tasksCtrl', function ($scope, $http,$window){
  				description: $scope.oldTask.description,
 	 			assignedTo: $scope.oldTask.assignedTo,
 	 			complexity: $scope.oldTask.complexity,
-	 			status: $scope.oldTask.status,
-	 			priority:$scope.oldTask.priority
+	 			status: $scope.oldTask.status
  			},
  			oldData: $scope.oldData
  		};
@@ -102,22 +83,5 @@ app.controller('tasksCtrl', function ($scope, $http,$window){
 	$window.location.href = 'app2.html'
  		
  	}
-
- 	var getAssignedto = function () {
-		var response = {
-			method: "GET",
-			url: '/Assignedto'
-		};
-		$http(response).then(function (data){
-			console.log("paaaaaaaaaairsssss",data)
-			$scope.team =data.data 
-		},function(){
-			console.log('error')
-		});
-    };
-
-    $scope.Showassignedto = function () {
-	getAssignedto();
- 		
- 	}
+ 	
 });
