@@ -23,11 +23,6 @@ app.controller('profile' ,[ '$scope','$http',function ($scope , $http) {
 			});
 	 }
 	 get()
-<<<<<<< HEAD
-})
-
-
-=======
 
 
  $scope.selectFile= function(files){
@@ -85,4 +80,3 @@ console.log("gfiyuftru7fr")
 
   }])
 
->>>>>>> last changes

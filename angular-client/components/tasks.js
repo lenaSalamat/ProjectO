@@ -102,9 +102,6 @@ app.controller('tasksCtrl', function ($scope, $http,$window){
 	$window.location.href = 'app2.html'
  		
  	}
-<<<<<<< HEAD
- 	
-=======
 
  	var getAssignedto = function () {
 		var response = {
@@ -125,6 +122,4 @@ app.controller('tasksCtrl', function ($scope, $http,$window){
 	getAssignedto();
  		
  	}
-
->>>>>>> last changes
 });
