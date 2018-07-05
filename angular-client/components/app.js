@@ -5,5 +5,4 @@ app.component('app', {
 });
 
 app.controller('app' , function ($scope,$http ) {
-
 })
