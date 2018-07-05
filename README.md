@@ -7,15 +7,6 @@ ProjectO helps team members developers to manage the projects they work on. once
  - __Scrum Master__: [Hanan Nouman](https://github.com/HananNouman)  
  - __Development Team Members__: [Lena Salamat](https://github.com/lenaSalamat) ,[Yussur Alani](https://github.com/Yussur90)
 
-## Table of Contents
-
-1. [Installing Dependencies](#InstallingDependencies)
-1. [Usage](#Usage)
-1. [Deployment](#Deployment)
-1. [Requirements](#Requirements)
-1. [Quote from You](#QuotefromYou)
-1. [Added Features](#AddedFeatures)
-
 
 ## Added Features
 - Drag&Drop tasks.
@@ -23,6 +14,16 @@ ProjectO helps team members developers to manage the projects they work on. once
 - Upload a photo.
 - Assign tasks to team members and adding it to their profiles.
 - Messages between team members.
+
+
+## Table of Contents
+
+1. [Installing Dependencies](#InstallingDependencies)
+1. [Usage](#Usage)
+1. [Deployment](#Deployment)
+1. [Requirements](#Requirements)
+1. [Quote from You](#QuotefromYou)
+
 
 ### Installing Dependencies
 
