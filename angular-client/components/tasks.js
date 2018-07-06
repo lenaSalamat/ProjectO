@@ -1,19 +1,14 @@
-
-
 var app = angular.module('mainTask');// task module
 
 //var app = angular.module('mainTask' ,[]);// task module
-
-
 app.component('tasks', {
 	templateUrl: '/templates/tasks.html'
 });
 
-
 app.controller('tasksCtrl', function ($scope, $http,$window){
-	// get all existing tasks in db 
+  // get all existing tasks in db 
 
-	 // $scope.CustomStyle = {};
+  // $scope.CustomStyle = {};
   //    $scope.BColor = "Yellow";
        
   //       $scope.SetStyle = function () {
@@ -36,8 +31,9 @@ app.controller('tasksCtrl', function ($scope, $http,$window){
     };
     get();// get all existing tasks once tasks.html is rendered 
 
+
     //data parameter represent a task details which required to be added to db (tasks table) 
-        var post = function (data,url) {
+    var post = function (data,url) {
 		var requestData = {
 			method: 'POST',
 			url: url,
@@ -98,6 +94,7 @@ app.controller('tasksCtrl', function ($scope, $http,$window){
  		$window.location.reload();
 
  	}
+ 	
  	$scope.Back = function () {
 	$window.location.href = 'app2.html'
  		

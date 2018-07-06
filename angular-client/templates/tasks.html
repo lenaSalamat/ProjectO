@@ -1,7 +1,7 @@
 
 
 
-<style>
+  <style>
 
 /** {
     box-sizing: border-box;
@@ -9,15 +9,12 @@
 
 /* Create three equal columns that floats next to each other */
 .column {
-  box-sizing: content-box;    
+    box-sizing: content-box;    
     width: 300px;
     height: 500px;
     float: left;
-    
     padding: 10px;
    /* Should be removed. Only for demonstration */
-
-
 }
 
 /* Clear floats after the columns */
@@ -27,31 +24,29 @@
     clear: both;
 }
 
-
 #div1 {
-height:60%;
-width:100%;
+   height:60%;
+   width:100%;
 }
 
+   </style>
 
 
-
-</style>
-<div  ng-controller="tasksCtrl">
+<div  ng-controller ="tasksCtrl">
   <!-- this section for navigation Bar-->
-  <nav class="navbar navbar-expand-lg navbar-dark " >
-   <a class="navbar-brand font-weight-bold" href="#" style="background-color:  #275E64; "><strong>ProjectO</strong></a>
+  <nav class ="navbar navbar-expand-lg navbar-dark " >
+   <a class ="navbar-brand font-weight-bold" href ="#" style ="background-color:  #275E64; "><strong>ProjectO</strong></a>
 
-   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+   <div class ="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class ="navbar-nav mr-auto">
+      <li class ="nav-item active">
+        <a class ="nav-link" href ="#">Home <span class ="sr-only">(current)</span></a>
       </li>
     </ul>
 
-    <ul class="navbar-nav nav-flex-icons">
-     <li class="nav-item">
-      <a href="#" ng-click="Back()" class="nav-link"><span class="glyphicon  glyphicon-backward"></span> Back</a>
+    <ul class ="navbar-nav nav-flex-icons">
+     <li class ="nav-item">
+      <a href ="#" ng-click ="Back()" class ="nav-link"><span class ="glyphicon  glyphicon-backward"></span> Back</a>
     </li>
 
   </ul>
@@ -60,34 +55,34 @@ width:100%;
 <!-- End Navigation Bar section--> 
 
 
-<div class="container">
+<div class ="container">
   <h1> Tasks:</h1>
-  <button type="button" class="btn btn-primary active" data-toggle="modal" data-target="#myModalAdd" ng-click="Showassignedto()">Add New Task</button>
+  <button type ="button" class ="btn btn-primary active" data-toggle ="modal" data-target ="#myModalAdd" ng-click ="Showassignedto()">Add New Task</button>
 
 
       <!-- Modal Edit -->
-      <div class="modal fade" id="myModalEdit" role="dialog">
-        <div class="modal-dialog">
+      <div class ="modal fade" id ="myModalEdit" role ="dialog">
+        <div class ="modal-dialog">
 
           <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Edit Task</h4>
+          <div class ="modal-content">
+            <div class ="modal-header">
+              <button type ="button" class ="close" data-dismiss ="modal">&times;</button>
+              <h4 class ="modal-title">Edit Task</h4>
             </div>
-            <div class="modal-body">
-             <form class="form-horizontal">
-              <div class="form-group">
-                <label class="control-label col-sm-2" >Task Description</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" ng-model="oldTask.description">
+            <div class ="modal-body">
+             <form class ="form-horizontal">
+              <div class ="form-group">
+                <label class ="control-label col-sm-2" >Task Description</label>
+                <div class ="col-sm-10">
+                  <input type ="text" class ="form-control" ng-model ="oldTask.description">
                 </div>
               </div>
 
-              <div class="form-group">
-                <label class="control-label col-sm-2" >Assgined To</label>
-                <div class="col-sm-10">
-                  <select class="form-control" ng-model="oldTask.assignedTo">
+              <div class ="form-group">
+                <label class ="control-label col-sm-2" >Assgined To</label>
+                <div class ="col-sm-10">
+                  <select class ="form-control" ng-model ="oldTask.assignedTo">
                     <option>AbdulHameed</option>
                     <option>Abdullateef</option>
                     <option>Qays</option>
@@ -96,10 +91,10 @@ width:100%;
                 </div>
               </div>
 
-              <div class="form-group">
-                <label class="control-label col-sm-2" >Task Complexity</label>
-                <div class="col-sm-10">
-                  <select class="form-control" ng-model="oldTask.complexity">
+              <div class ="form-group">
+                <label class ="control-label col-sm-2" >Task Complexity</label>
+                <div class ="col-sm-10">
+                  <select class ="form-control" ng-model ="oldTask.complexity">
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -111,10 +106,10 @@ width:100%;
                 </div>
               </div>
 
-              <div class="form-group">
-                <label class="control-label col-sm-2" >Task Status</label>
-                <div class="col-sm-10">
-                  <select class="form-control" ng-model="oldTask.status">
+              <div class ="form-group">
+                <label class ="control-label col-sm-2" >Task Status</label>
+                <div class ="col-sm-10">
+                  <select class ="form-control" ng-model ="oldTask.status">
                     <option>Not Inatiated yet</option>
                     <option>In Progress</option>
                     <option>Completed</option>
@@ -122,10 +117,10 @@ width:100%;
                 </div>
               </div>
 
-              <div class="form-group">
-             <label class="control-label col-sm-2" >Task priority</label>
-             <div class="col-sm-10">
-                <select class="form-control" ng-model="mypriority">
+              <div class ="form-group">
+             <label class ="control-label col-sm-2" >Task priority</label>
+             <div class ="col-sm-10">
+                <select class ="form-control" ng-model ="mypriority">
                    <option>🗣urgent</option>
                     <option>🤝normal</option>
                     <option>🤙🏻complicated</option>
@@ -135,9 +130,9 @@ width:100%;
                </div>
               </div>
               
-              <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <button type="submit" class="btn btn-success" data-dismiss="modal" ng-click="saveChanges()">Save</button>
+              <div class ="form-group">
+                <div class ="col-sm-offset-2 col-sm-10">
+                  <button type ="submit" class ="btn btn-success" data-dismiss ="modal" ng-click ="saveChanges()">Save</button>
                 </div>
               </div>
             </form> 
@@ -146,38 +141,38 @@ width:100%;
 
       </div>
     </div> <!-- End Edit -->
-    <div class="row" >
+    <div class ="row" >
 
- <div class="column" style="background-color:#aaa;" ondragover='allowdrop(event)' ondrop='drop(event)' >
+ <div class ="column" style ="background-color:#aaa;" ondragover ='allowdrop(event)' ondrop ='drop(event)' >
    <h2>To Do</h2>
-   <div class="row"  >
-       <div   ng-repeat='task in tasksInfo'  >
+   <div class ="row"  >
+       <div   ng-repeat ='task in tasksInfo'  >
          
-         <div  id=task._id  class="col-bg-4" draggable="true" ondragstart='drag(event)'>
-           <ul class="w3-ul  w3-hoverable " >
-             <li class="w3-bar" style="border: 2px solid black; padding: 10px; border-radius: 25px;" >
+         <div  id =task._id  class ="col-bg-4" draggable ="true" ondragstart ='drag(event)'>
+           <ul class ="w3-ul  w3-hoverable " >
+             <li class ="w3-bar" style ="border: 2px solid black; padding: 10px; border-radius: 25px;" >
 
-               <div  class="w3-card w3-animate-right " style="right:0; align-items: center;" id="rightMenu" ng-show="bar">
+               <div  class ="w3-card w3-animate-right " style ="right:0; align-items: center;" id ="rightMenu" ng-show ="bar">
                  <!-- we used data-target to connect this button on Modal fadeout-->
-                 <a href="#" class="w3-bar-item w3-button" ng-click="deleteTask(task.description)" style="color: white;">Delete</a>
-                 <a href="#" class="w3-bar-item w3-button" ng-click="getOldTaskData(task)" data-target="#myModalEdit" data-toggle="modal" style="color: white;">Update</a>
+                 <a href ="#" class ="w3-bar-item w3-button" ng-click ="deleteTask(task.description)" style ="color: white;">Delete</a>
+                 <a href ="#" class ="w3-bar-item w3-button" ng-click ="getOldTaskData(task)" data-target ="#myModalEdit" data-toggle ="modal" style ="color: white;">Update</a>
                </div>
               <center><div>
              <h5>Deadline In</h5>
-             <p id="time" style="background-color: #ffffff ;border: 2px solid black"></p>
+             <p id ="time" style ="background-color: #ffffff ;border: 2px solid black"></p>
              </div></center>
-               <div class="w3-teal">
-                 <button class="w3-button w3-xlarge w3-right" ng-click="bar = !bar"  style="background-color: #275E64 ;" >&#9776;</button>
-                 <div class="w3-container" style="background-color: #275E64 ;" >
+               <div class ="w3-teal">
+                 <button class ="w3-button w3-xlarge w3-right" ng-click ="bar = !bar"  style ="background-color: #275E64 ;" >&#9776;</button>
+                 <div class ="w3-container" style ="background-color: #275E64 ;" >
                    <h2>{{task.description}}</h2>
                  </div>
                </div>
                
-               <h3 class="w3-bar-item  w3-hide-small" style="width:85px">{{$index+1}}📄 </h3>
-               <div class="w3-bar-item">
-                 <span class="w3-large" >{{task.complexity}}</span><br>
-              <div class="w3-bar-item" >
-                 <span class="w3-large" style="background-color: #ffffff ;border: 2px solid black" >{{task.priority}}</span><br>
+               <h3 class ="w3-bar-item  w3-hide-small" style ="width:85px">{{$index+1}}📄 </h3>
+               <div class ="w3-bar-item">
+                 <span class ="w3-large" >{{task.complexity}}</span><br>
+              <div class ="w3-bar-item" >
+                 <span class ="w3-large" style ="background-color: #ffffff ;border: 2px solid black" >{{task.priority}}</span><br>
 
                  
                </div>
@@ -194,13 +189,13 @@ width:100%;
  
  </div>
 
- <div class="column" style="background-color:#bbb;" ondragover='allowdrop(event)' ondrop='drop(event)' >
+ <div class ="column" style ="background-color:#bbb;" ondragover ='allowdrop(event)' ondrop ='drop(event)' >
    <h2 >In Progress</h2>
    <div></div>
 
    
  </div>
- <div class="column" style="background-color:#ccc;" ondragover='allowdrop(event)' ondrop='drop(event)'>
+ <div class ="column" style ="background-color:#ccc;" ondragover ='allowdrop(event)' ondrop ='drop(event)'>
    <h2>Done</h2>
 
    <div></div>
@@ -210,30 +205,30 @@ width:100%;
  </div>
 </div>
     <!-- Modal Add -->
-    <div class="modal fade" id="myModalAdd" role="dialog">
-      <div class="modal-dialog">
+    <div class ="modal fade" id ="myModalAdd" role ="dialog">
+      <div class ="modal-dialog">
 
         <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Add New Task</h4>
+        <div class ="modal-content">
+          <div class ="modal-header">
+            <button type ="button" class ="close" data-dismiss ="modal">&times;</button>
+            <h4 class ="modal-title">Add New Task</h4>
           </div>
-          <div class="modal-body">
-           <form class="form-horizontal">
-            <div class="form-group">
-              <label class="control-label col-sm-2" >Task Description</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" ng-model="description">
+          <div class ="modal-body">
+           <form class ="form-horizontal">
+            <div class ="form-group">
+              <label class ="control-label col-sm-2" >Task Description</label>
+              <div class ="col-sm-10">
+                <input type ="text" class ="form-control" ng-model ="description">
               </div>
             </div>
         
 
-            <div class="form-group">
-                <label class="control-label col-sm-2" >Assgined To</label>
-                <div class="col-sm-10">
-                  <select class="form-control" ng-model="assignedTo" >
-                    <option ng-repeat='member in team'>{{member}}</option>
+            <div class ="form-group">
+                <label class ="control-label col-sm-2" >Assgined To</label>
+                <div class ="col-sm-10">
+                  <select class ="form-control" ng-model ="assignedTo" >
+                    <option ng-repeat ='member in team'>{{member}}</option>
                   </select>
                 </div>
               </div>
@@ -246,10 +241,10 @@ width:100%;
               </div>
             </div> -->
 
-            <div class="form-group">
-              <label class="control-label col-sm-2" >Task Complexity</label>
-              <div class="col-sm-10">
-                <select class="form-control" ng-model="complexity">
+            <div class ="form-group">
+              <label class ="control-label col-sm-2" >Task Complexity</label>
+              <div class ="col-sm-10">
+                <select class ="form-control" ng-model ="complexity">
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
@@ -262,10 +257,10 @@ width:100%;
             </div>
 
 
-            <div class="form-group">
-              <label class="control-label col-sm-2" >Task Status</label>
-              <div class="col-sm-10">
-                <select class="form-control" ng-model="status">
+            <div class ="form-group">
+              <label class ="control-label col-sm-2" >Task Status</label>
+              <div class ="col-sm-10">
+                <select class ="form-control" ng-model ="status">
                   <option>Not Inatiated yet</option>
                   <option>In Progress</option>
                   <option>Completed</option>
@@ -283,10 +278,10 @@ width:100%;
                <span ng-style="CustomStyle">Task priority</span>
                </div> -->
                
-            <div class="form-group">
-             <label class="control-label col-sm-2" >Task priority</label>
-             <div class="col-sm-10">
-                <select class="form-control" ng-model="mypriority">
+            <div class ="form-group">
+             <label class ="control-label col-sm-2" >Task priority</label>
+             <div class ="col-sm-10">
+                <select class ="form-control" ng-model ="mypriority">
                   <option>🗣urgent</option>
                     <option>🤝normal</option>
                     <option>🤙🏻complicated</option>
@@ -295,9 +290,9 @@ width:100%;
                
                </div>
               </div>
-            <div class="form-group">
-              <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-success" data-dismiss="modal" ng-click="addNewTask()">Add</button>
+            <div class ="form-group">
+              <div class ="col-sm-offset-2 col-sm-10">
+                <button type ="submit" class ="btn btn-success" data-dismiss ="modal" ng-click ="addNewTask()">Add</button>
               </div>
             </div>
 

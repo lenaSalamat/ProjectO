@@ -2,6 +2,7 @@ var app = angular.module('mainApp');
 app.component('signup', {
 	templateUrl :'/templates/signup.html'
 });
+
 app.controller('signup' , function ($scope,$http ) {
 	 var post = function (data) {
 		var requestData = {
@@ -15,19 +16,21 @@ app.controller('signup' , function ($scope,$http ) {
 			console.log('error')
 		});
 	 }
+
 // send the new user info to the server in order to save it in database
   $scope.done = function () {
-  post({
+    post({
 		username : $scope.username ,
 		email : $scope.email,
 		password : $scope.password,
 		Address:$scope.Address,
 		Age:$scope.Age
 
-  })
+    })
 
-};
+  };
 })
+
 // disable sign up button untill user fill all fields correctly 
 angular.module('mainApp').directive('disableBtn',
 	function() {

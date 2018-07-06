@@ -2,28 +2,24 @@ let mongoose = require('mongoose');
 let bcrypt = require('bcrypt');
 let Schema =mongoose.Schema;
 
-
 //mongoose.connect('mongodb://localhost:/PM-dbCD' );
 // mongoose.connect('mongodb://admin:admin@ds249269.mlab.com:49269/pm-db');
-
-
 //mongoose.connect('mongodb://localhost:/PM-db' );
+
 mongoose.connect('mongodb://localhost/pm-db');
 
 //mongoose.connect('mongodb://localhost:/PM-db' );
-
 //mongoose.connect('mongodb://admin:admin@ds249269.mlab.com:49269/pm-db');
-
-
-
 
 var db = mongoose.connection;
 db.on('error' , function(){
 	console.log('mongoose not Connected !')
 })
+
 db.once('open' , function () {
 	console.log("mongoose conncted !")
 })
+
 var taskSchema = mongoose.Schema({
 	description: String,
 	assignedTo: String,
@@ -31,21 +27,17 @@ var taskSchema = mongoose.Schema({
 	status: String,
 	priority: String
 });
+
 var projectSchama = mongoose.Schema({
 	projectName : String , 
 	projectDisc : String,
-
 	projectPair: [String],//pair is team 
-
-
-
 	tasks:[taskSchema]//each project has many tasks
 })
 
 var imageSchema = mongoose.Schema({
 image: String	
 })
-
 
 var userSchema = mongoose.Schema({
 	username :{type : String ,required :true, index :{unique:true} },
@@ -57,11 +49,13 @@ var userSchema = mongoose.Schema({
 	photo:imageSchema
 	
 });
+
 var chatSchema = mongoose.Schema({
 	sendFrom:{type:String,required:true},
 	sendTo:{type:String,required:true},
 	content:{type:String,required:true}
 });
+
 // define models for the schema
 var User = mongoose.model("User" , userSchema);
 var Image = mongoose.model("Image" , imageSchema);
@@ -95,19 +89,12 @@ msg.save(function(err){
 })
 
 }
-
-
 // }
-
 
 // add the task to the task table, project table and to user table
 var addTask = function(data, callback) {
-
 	var task = new Task({description:data.description,assignedTo:data.assignedTo,complexity:data.complexity,status:data.status,priority:data.priority});
 	task.save();
-
-
-
 	User.findOne({username:data.assignedTo}, function (err, user) {
 		if (err) return handleError(err);
 		for(var i=0; i<user.projects.length ;i++){
@@ -142,6 +129,7 @@ var addTask = function(data, callback) {
 		
 	});
 }
+
 // delete the task from the task table, project table and user table
 var deleteTask = function(taskDesc,userId,projectId ,callback) {
 	//delete task from user table
@@ -176,6 +164,7 @@ var deleteTask = function(taskDesc,userId,projectId ,callback) {
 		callback(null, data2);
 	});
 }
+
 // update the task from the task table, project table and user table
 var updateTask = function(query, newData,userId,projectId , callback) {
 	console.log('queryy',query)
@@ -273,6 +262,7 @@ var deleteProject = function(data,userId,callback){
 		callback(null,elem)
 	});
 }
+
 // this function to update  project from the user table and project table 
 var changeProject = function(query,condition,userId,callback){
 	User.findById(userId, function (err, user) {
@@ -286,9 +276,6 @@ var changeProject = function(query,condition,userId,callback){
 				user.save();
 			}
 		}
-
-		
-
 	});
 	Project.findOneAndUpdate(query,condition,function(err,elem){
 		if(err){

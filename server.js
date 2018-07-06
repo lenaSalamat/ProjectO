@@ -25,6 +25,7 @@ app.post('/chat',function(req , res){
 	})
 	
 });
+
 app.get('/chat', function (req, res) {
     console.log('I received a GET request');
     db.User.findOne({'_id' : req.session._id},function (err, data) {
@@ -38,22 +39,18 @@ app.get('/chat', function (req, res) {
            res.json(chat);
         }
 
-    });
-	})
-    
-
+      });
+    })
 });
-
-
 
 app.post('/photo',function(req,res){ 
 db.User.findOne({'_id':req.session._id},function (err, data) {
 		if(err){res.sendStatus(404)}
 			if(data !== null){
-				var imagee={};
+				var imagee = {};
                 //console.log(typeof(req.body.projectPair),"paaaaaaairsss")
-				imagee['image']=req.body.image;
-				imagee['image_id']=req.session._id;
+				imagee['image'] = req.body.image;
+				imagee['image_id'] = req.session._id;
 				db.addimage(imagee , function (err , data) {
 					if(err) {
 						res.send(err)
@@ -96,8 +93,6 @@ app.get('/photo', function(req,res) {
 	});
 });
 
-
-
 app.post('/user',function(req , res){
 	db.save(req.body, function (err , data) {
 		if(err) {
@@ -107,6 +102,7 @@ app.post('/user',function(req , res){
 	})
 	
 });
+
 app.get('/user', function (req , res) {
 	db.User.findOne({'_id' : req.session._id},function (err, data) {
 		if(err) {
@@ -115,21 +111,22 @@ app.get('/user', function (req , res) {
 		res.send(data)
 	})
 });
+
 app.post('/login', function (req , res) {
-	db.User.findOne({'username':req.body.username},function (err, data) {
+	db.User.findOne({'username':req.body.username}, function (err, data) {
 		if(err){res.sendStatus(404)}
 			if(data !== null){
 				bcrypt.compare(req.body.password, data.password, function(err, resCrypt) {
 					if(err){res.sendStatus(404)}
 						if(resCrypt){
-							req.session._id=data._id;
-							req.session.username=data.username;
-							req.session.password=data.password;
+							req.session._id = data._id;
+							req.session.username = data.username;
+							req.session.password = data.password;
 							res.sendStatus(200)
 						}
 					});
 
-			}
+			  }
 		});
 });
 
@@ -155,22 +152,19 @@ app.post('/project',function(req , res) {
 
 	console.log(req.body)
 
-	db.User.findOne({'_id':req.session._id},function (err, data) {
+	db.User.findOne({'_id':req.session._id}, function (err, data) {
 		if(err){res.sendStatus(404)}
 			if(data !== null){
-				var project={};
-				var team=req.body.projectPair.split(",")
+				var project = {};
+				var team = req.body.projectPair.split(",")
                 //console.log(typeof(req.body.projectPair),"paaaaaaairsss")
-				project['projectName']=req.body.projectName;
-				project['projectDisc']=req.body.projectDisc;
-
-				project['projectPair']=team;
-
-				
-				project['project_id']=req.session._id;
+				project['projectName'] = req.body.projectName;
+				project['projectDisc'] = req.body.projectDisc;
+				project['projectPair'] = team;
+				project['project_id'] = req.session._id;
 				db.addProject(project , function (err , data) {
 					if(err) {
-						res.send(err)
+					res.send(err)
 					}
 					res.sendStatus(200);
 				});	
@@ -181,7 +175,7 @@ app.post('/project',function(req , res) {
 
 // route to get all projects for user 
 app.get('/project', function(req,res) {
-	db.User.findOne({'_id':req.session._id},function (err, user) {
+	db.User.findOne({'_id':req.session._id}, function (err, user) {
 		if(err){res.send(err)}
 
 			//console.log(user.projects,"prooooojectssssssssssss0")
@@ -191,15 +185,15 @@ app.get('/project', function(req,res) {
 });
 let projectId;
 let projectname;
-app.post('/projectId',function(req,res){
-	projectId=req.body.projectId;
-	projectname=req.body.name;
+app.post('/projectId', function(req,res){
+	projectId = req.body.projectId;
+	projectname = req.body.name;
 })
 
 // route to delete a specific project 
 app.post('/deleteProj', function (req,res){
-	var userId=req.session._id;
-	db.deleteProject({_id:req.body._id},userId,function(err,data){
+	var userId = req.session._id;
+	db.deleteProject({_id:req.body._id},userId, function(err,data){
 		if(err){
 			res.send(err)
 		}
@@ -210,8 +204,8 @@ app.post('/deleteProj', function (req,res){
 // route to update project 
 app.post('/changeProj', function (req,res){
 	var query = {projectName:req.body._id.projectName, projectDisc:req.body._id.projectDisc}
-	var newProj = {projectName:req.body.projectName,projectDisc:req.body.projectDisc}
-	db.changeProject(query,{$set:newProj},req.session._id,function(err,data){
+	var newProj = {projectName:req.body.projectName, projectDisc:req.body.projectDisc}
+	db.changeProject(query,{$set:newProj},req.session._id, function(err,data){
 		if(err){
 			res.send(err)
 		}
@@ -222,11 +216,11 @@ app.post('/changeProj', function (req,res){
 //Routes for Tasks :)
 
 app.get('/tasks', function(req, res) {
-	db.User.findOne({'_id':req.session._id},function(err,user){
+	db.User.findOne({'_id':req.session._id}, function(err,user){
 		if(err){
 			res.send(err);
 		}
-		for(var i=0;i<user.projects.length;i++){
+		for(var i = 0 ; i < user.projects.length ; i++){
 			if(user.projects[i]._id.toString() === projectId.toString()){
 				res.status(200).send(user.projects[i].tasks);
 			}
@@ -235,11 +229,11 @@ app.get('/tasks', function(req, res) {
 });
 //hereeeeeee
 app.get('/Assignedto', function(req, res) {
-	db.User.findOne({'_id':req.session._id},function(err,user){
+	db.User.findOne({'_id':req.session._id}, function(err,user){
 		if(err){
 			res.send(err);
 		}
-		for(var i=0;i<user.projects.length;i++){
+		for(var i = 0 ; i < user.projects.length ; i++){
 			if(user.projects[i]._id.toString() === projectId.toString()){
 				res.status(200).send(user.projects[i].projectPair);
 			}
@@ -262,23 +256,21 @@ app.get('/tasks/:description', function(req, res) {
 
 app.post('/tasks', function(req, res) {
 	console.log(projectId)
-	db.User.findOne({'_id':req.session._id},function (err, data) {
+	db.User.findOne({'_id':req.session._id}, function (err, data) {
 		if(err){res.sendStatus(404)}
 			if(data !== null){
-				db.Project.findOne({_id:projectId},function(err,pro){
+				db.Project.findOne({_id:projectId}, function(err,pro){
 					if(err){res.sendStatus(404)}
 						if(pro !== null){
-							var task={};
-							task['description']=req.body.description;
-							task['assignedTo']=req.body.assignedTo;
-							task['complexity']=req.body.complexity;
-							task['status']=req.body.status;
-							task['priority']=req.body.priority;
-
-
-                            task['projectName']=projectname;
-							task['project_id']=projectId;
-							task['user_id']=req.session._id;
+							var task = {};
+							task['description'] = req.body.description;
+							task['assignedTo'] = req.body.assignedTo;
+							task['complexity'] = req.body.complexity;
+							task['status'] = req.body.status;
+							task['priority'] = req.body.priority;
+                            task['projectName'] = projectname;
+							task['project_id'] = projectId;
+							task['user_id'] = req.session._id;
 							db.addTask(task , function (err , data) {
 								if(err) {
 									res.send(err)
@@ -317,5 +309,5 @@ app.post('/updateTask', function(req, res){
 
 var port = 1596
 app.listen(process.env.PORT || port , function () {
-	console.log("server is listening "+ port +" Port")
+	console.log("server is listening "  + port + " Port")
 });

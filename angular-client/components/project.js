@@ -2,8 +2,8 @@ var app = angular.module('mainProject')
 app.component('project', {
 	templateUrl :'/templates/project.html'
 });
+
 app.controller('project' , function ($scope,$http,$window ) {
- 
  // use http GET request to fetch all projects from server   
  var get = function (url) {
     var response = {
@@ -15,7 +15,7 @@ app.controller('project' , function ($scope,$http,$window ) {
 			$scope.projects = res.data
 		},function () {
 			console.log('error')
-		})
+	})
  }
  
 // use http POST request to send a specific project details that user wanna to add it 

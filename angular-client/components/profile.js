@@ -1,5 +1,4 @@
 var app = angular.module('mainProject' );
-
 app.component('profile', {
 	templateUrl :'/templates/profile.html'
 });
@@ -18,26 +17,26 @@ app.controller('profile' ,[ '$scope','$http',function ($scope , $http) {
 		}
 			$http(response).then(function (data) {
 				$scope.user = data.data;
-			},function () {
+			}, function () {
 				console.log('error')
 			});
 	 }
 	 get()
 
 
- $scope.selectFile= function(files){
+ $scope.selectFile = function(files){
 	 var file = files[0];
    var fileReader = new FileReader();
-   fileReader.readAsDataURL(file);
-   fileReader.onload = function (e){
-    var req ={
+    fileReader.readAsDataURL(file);
+     fileReader.onload = function (e){
+   var req ={
     method: 'POST',
     url:"/photo",
-    headers: {
+    headers : {
     'Content-Type': 'application/json'
       },
     data: {
-       image:e.target.result
+       image : e.target.result
     }            
   }      
   $http(req).then(function(data){
@@ -50,26 +49,24 @@ app.controller('profile' ,[ '$scope','$http',function ($scope , $http) {
    }
     }
 
-$scope.init = function (){
+
+ $scope.init = function (){
 console.log("gfiyuftru7fr") 
  
 }
 
   
-   $scope.getPhoto = function (){
-    var req ={
+ $scope.getPhoto = function (){
+    var req = {
     method: 'GET',
     url:"/photo",
     headers: {
     'Content-Type': 'application/json'
-      }    
+       }    
       } 
   $http(req).then(function(data){
     console.log('data from schema is here', data )
-     
       $scope.hanan = data['data'].image
-    
-   
   }, function(){
 
   });
